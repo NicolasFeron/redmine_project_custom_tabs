@@ -8,9 +8,8 @@ The custom tab can display the result of an existing Redmine page, display a spe
 == Installation
 Unfortunately, there is no hook to manage the addition of modifying the project view.
 It is necessary to add a hook in  app/views/layouts/base.html.erb, the line below :
-```
-	<%= call_hook :before_render_tabs %>
-```
+
+```<%= call_hook :before_render_tabs %>```
 Before the block
 ```
 <div id="main-menu">
