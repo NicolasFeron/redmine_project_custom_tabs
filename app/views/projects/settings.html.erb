@@ -1,0 +1,11 @@
+<h2><%=l(:label_settings)%></h2>
+
+<%
+	tabs = project_settings_tabs
+    tabs.push({ :name => 'custom_tabs',
+    	:partial => 'settings/custom_tabs_settings',:label => :custom_tabs 
+    	})
+%>
+<%= render_tabs tabs %>
+
+<% html_title(l(:label_settings)) -%>
