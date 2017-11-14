@@ -1,3 +1,7 @@
-#list_tab_settings td{
+#list_tab_settings td {
 	text-align: left;
+}
+
+#admin-menu a.custom-tabs { 
+	background-image: url(../images/tabs.png); 
 }

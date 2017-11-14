@@ -11,8 +11,8 @@
 	  <%= f.text_field('tab_name') %>		
   </p>
   <p>
-    <%= l(:label_query) %>         
-    <%= f.select(:query_id, {} ) %>    
+    <%= l(:label_query) %>       
+    <%= f.select(:query_id, options_from_collection_for_select(@queries, "id", "name", selected: @tab_setting.query_id)) %>    
   </p>
   <p>
    	<%= l(:label_tab_settings_url) %>         		     
@@ -21,5 +21,5 @@
 	<p><%= submit_tag l(:button_save) %></p>
 <% end %>
 
-<%= javascript_include_tag 'edit_admin.js', :plugin => 'custom_tabs' %>
-<%= javascript_include_tag 'edit.js', :plugin => 'custom_tabs' %>
+<%= javascript_include_tag 'edit_admin.js', :plugin => 'redmine_project_custom_tabs' %>
+<%= javascript_include_tag 'edit.js', :plugin => 'redmine_project_custom_tabs' %>

@@ -9,3 +9,4 @@
     post '/tab_setting/save', :to => 'tab_setting#save'
     delete  '/tab_setting/:id', :controller => 'tab_setting', :action => 'delete', :as => 'delete_tab_setting'
     get '/projects/:project_id/issues/default/:id', :to => 'tab_setting#default', :as => 'default'
+	get '/tab_setting/queries', :to => 'tab_setting#queries', as: 'queries_tab_setting' 

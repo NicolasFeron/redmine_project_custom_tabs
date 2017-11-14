@@ -65,7 +65,7 @@ class TabSettingController < ApplicationController
     def edit_admin
         @projets = Project.active
         @tab_setting = selected_tab_setting
-        @queries = Query.all
+        get_queries(@tab_setting.project_id)
     end
 
     def default
@@ -85,6 +85,10 @@ class TabSettingController < ApplicationController
           :limit =>  @limit)
     end
 
+    def queries
+        render json: get_queries(params[:project_id])
+    end
+
     def post_params
         params.require(:tab_setting).permit!
     end
@@ -102,7 +106,7 @@ class TabSettingController < ApplicationController
     end
 
     def get_queries project_id
-        @queries = [Query.new(name:"")] + IssueQuery.visible.where(project_id: project_id)
+        @queries = [Query.new(name:"")] + IssueQuery.where(project_id: project_id)
     end
 
 end

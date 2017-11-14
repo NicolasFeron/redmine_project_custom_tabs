@@ -6,4 +6,7 @@ class CreateTabSettings < ActiveRecord::Migration
       t.string :tab_url
     end
   end
+  def self.down
+	drop_table :tab_settings
+  end
 end
