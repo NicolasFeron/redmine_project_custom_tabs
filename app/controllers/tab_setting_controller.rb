@@ -47,8 +47,8 @@ class TabSettingController < ApplicationController
     end
 
     def new_admin
-        @projets = Project.active
-        @queries = Query.all
+        @projets = [Project.new(name:"")] + Project.active
+        @queries = []
         @tab_setting = TabSetting.new
         render :action => 'edit_admin'
     end
