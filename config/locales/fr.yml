@@ -7,3 +7,10 @@ fr:
   label_tab_settings_url: URL
   query: Requête
   or: Ou
+  label_tab_setting_model: Modèle pour les onglets personnalisés
+  label_tab_setting_model_new: Nouveau modèle
+  label_tab_setting_model_name: Nom du modèle
+  label_tab_setting_model_content: Code du modèle
+  label_model: Modèle
+  label_tab_settings_model: Modèle
+  default_tab_settings_model: Modèle par défaut

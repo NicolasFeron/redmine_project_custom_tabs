@@ -8,7 +8,7 @@ module CustomTabs
             Redmine::MenuManager.map(:project_menu).delete(tab.tab_name.to_sym)
           end
           if tab.tab_url.blank?
-            tab.tab_url = "http://" + context[:request].host_with_port.to_s + "/projects/dexia/issues/default"
+            tab.tab_url = "http://#{context[:request].host_with_port.to_s}/projects/#{context[:project].identifier}/issues/default"
             menu.push  tab.tab_name, tab.tab_url+'/'+tab.id.to_s
           else
             menu.push  tab.tab_name, tab.tab_url

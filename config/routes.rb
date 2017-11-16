@@ -10,3 +10,13 @@
     delete  '/tab_setting/:id', :controller => 'tab_setting', :action => 'delete', :as => 'delete_tab_setting'
     get '/projects/:project_id/issues/default/:id', :to => 'tab_setting#default', :as => 'default'
 	get '/tab_setting/queries', :to => 'tab_setting#queries', as: 'queries_tab_setting' 
+
+
+	get '/tab_setting_model/index', :to => 'tab_setting_model#index', as: 'tab_setting_models' 
+    get '/tab_setting_model/new', :controller => 'tab_setting_model', :action => 'new', :as => 'new_tab_setting_model'
+    get '/tab_setting_model/:id/edit', :controller => 'tab_setting_model', :action => 'edit', :as => 'edit_tab_setting_model'
+    post '/tab_setting_model/save', :to => 'tab_setting_model#save'
+    delete  '/tab_setting_model/:id', :controller => 'tab_setting_model', :action => 'delete', :as => 'delete_tab_setting_model'
+	
+    get '/projects/:project_id/issues/custom_model_html/:id', :to => 'tab_setting#custom_model_html', :as => 'custom_model_html'
+    

@@ -13,6 +13,10 @@
   <p>
     <%= l(:label_query) %>       
     <%= f.select(:query_id, options_from_collection_for_select(@queries, "id", "name", selected: @tab_setting.query_id)) %>    
+    <span id="tab_setting_model_zone" >
+      <%= l(:label_model) %>:
+      <%= f.select(:tab_setting_model_id, options_from_collection_for_select(@models, "id", "name", selected: @tab_setting.tab_setting_model_id) ) %>  
+    </span>
   </p>
   <p>
    	<%= l(:label_tab_settings_url) %>         		     

@@ -1,0 +1,13 @@
+<%= form_for @tab_setting_model,
+  :url => { :controller => 'tab_setting_model', :action => 'save', :id => @tab_setting_model },
+  :html => {:method => :post} do |f| %>
+	<p>
+   	<%= l(:label_tab_setting_model_name) %> :        
+	  <%= f.text_field('name') %>		
+  </p>
+  <p>
+   	<%= l(:label_tab_setting_model_content) %>:         		     
+	  <%= f.text_area(:content, size: '200x40') %>	
+  </p>
+	<p><%= submit_tag l(:button_save) %></p>
+<% end %>

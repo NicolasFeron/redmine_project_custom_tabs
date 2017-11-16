@@ -7,6 +7,6 @@ class CreateTabSettings < ActiveRecord::Migration
     end
   end
   def self.down
-	drop_table :tab_settings
+    drop_table :tab_settings
   end
 end

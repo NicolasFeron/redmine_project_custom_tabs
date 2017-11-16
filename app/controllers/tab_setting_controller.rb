@@ -27,7 +27,7 @@ class TabSettingController < ApplicationController
     def index
         @tab_settings = TabSetting.all
         unless admin_mode
-            redirect_to settings_project_path(get_project(params[:project_id]), :tab => 'custom_tabss')
+            redirect_to settings_project_path(get_project(params[:project_id]), :tab => 'custom_tabs')
         end
     end
 
@@ -43,6 +43,7 @@ class TabSettingController < ApplicationController
         get_project(params[:project_id])
         get_queries(params[:project_id])
         @tab_setting = TabSetting.new
+        get_models
         render :action => 'edit'
     end
 
@@ -50,6 +51,7 @@ class TabSettingController < ApplicationController
         @projets = [Project.new(name:"")] + Project.active
         @queries = []
         @tab_setting = TabSetting.new
+        get_modelss
         render :action => 'edit_admin'
     end
 
@@ -60,15 +62,33 @@ class TabSettingController < ApplicationController
         end
         get_project(@tab_setting.project_id)
         get_queries(@tab_setting.project_id)
+        get_models
     end
 
     def edit_admin
         @projets = Project.active
         @tab_setting = selected_tab_setting
         get_queries(@tab_setting.project_id)
+        get_models
+    end
+
+    def custom
+        load_custom_tab_data
     end
 
     def default
+        load_custom_tab_data
+        if !@tab_setting.tab_setting_model.nil? && !@tab_setting.tab_setting_model.content.nil?            
+             render :action => :custom
+        end
+    end
+
+    def custom_model_html
+        load_custom_tab_data
+        render inline: @tab_setting.tab_setting_model.content
+    end
+
+    def load_custom_tab_data
         @project = Project.find_by_identifier(params[:project_id]) 
         @tab_setting = selected_tab_setting
         @query = Query.find(@tab_setting.query)
@@ -109,4 +129,7 @@ class TabSettingController < ApplicationController
         @queries = [Query.new(name:"")] + IssueQuery.where(project_id: project_id)
     end
 
+    def get_models
+        @models = [TabSettingModel.new(name: l(:default_tab_settings_model))] + TabSettingModel.all
+    end
 end

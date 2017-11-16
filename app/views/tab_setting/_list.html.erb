@@ -18,18 +18,21 @@
 				<th><%= l(:label_tab_settings_name)%></th>
 				<th><%= l(:label_tab_settings_url)%></th>
 				<th><%= l(:query)%></th>
+				<th><%= l(:label_tab_settings_model)%></th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% for tab_setting in @tab_settings -%>
-			<% query = Query.find_by_id(tab_setting.query_id)
-			   query_name  = query.nil? ? "" : query.name
-			%>
 			<tr>
 				<td><%= link_to(tab_setting.tab_name, edit_tab_setting_path(tab_setting)) %></td>
 				<td><%= tab_setting.tab_url %></td>
-				<td><%= query_name %></td>
+				<td> 
+					<%= tab_setting.query.nil? ? "" : tab_setting.query.name %>					
+				</td>
+				<td>
+					<%= tab_setting.tab_setting_model.nil?? (tab_setting.query.nil? ? "" : l(:default_tab_settings_model)) : tab_setting.tab_setting_model.name %>
+				</td>
 				<td class="buttons">
 					<%= delete_link(delete_tab_setting_path(tab_setting), :back_url => request.original_fullpath) %>
 				</td>

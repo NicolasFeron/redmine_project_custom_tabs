@@ -1,0 +1,32 @@
+<%= stylesheet_link_tag 'custom_tabs', :plugin => "redmine_project_custom_tabs" %>
+<%= stylesheet_link_tag 'font-awesome-4.6.3/css/font-awesome.min.css', :plugin => "redmine_project_custom_tabs" %>
+<div class="contextual">
+	<%= link_to l(:label_tab_setting_model_new), new_tab_setting_model_path, :class => 'icon icon-add' %>
+</div>
+
+<%= title l(:label_tab_setting_model) %>
+
+<% if @models.empty? %>
+<p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>  
+<div class="autoscroll">
+	<table id="list_tab_settings" class="list">
+		<thead>
+			<tr>
+				<th><%= l(:label_tab_setting_model_name)%></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% for tab_setting_model in @models -%>
+				<tr>
+					<td><%= link_to(tab_setting_model.name, edit_tab_setting_model_path(tab_setting_model)) %></td>
+					<td class="buttons">
+						<%= delete_link(delete_tab_setting_model_path(tab_setting_model), :back_url => request.original_fullpath) %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<% end %>

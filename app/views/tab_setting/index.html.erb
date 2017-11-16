@@ -17,26 +17,23 @@
 				<th><%= l(:label_project)%></th>
 				<th><%= l(:label_tab_settings_url)%></th>
 				<th><%= l(:query)%></th>
+				<th><%= l(:label_tab_settings_model)%></th>
 				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			<% for tab_setting in @tab_settings -%>
-			<% project = Project.find_by_id(tab_setting.project_id)
-			   query = Query.find_by_id(tab_setting.query_id)
-			   query_name  = query.nil? ? "" : query.name
-			unless project.nil? %>
 			<tr>
 				<td><%= link_to(tab_setting.tab_name, edit_admin_tab_setting_path(tab_setting)) %></td>
-				<td><%= project.name %></td>
+				<td><%= tab_setting.project.name %></td>
 				<td><%= tab_setting.tab_url %></td>
-				<td><%= query_name %></td>
+				<td><%= display_query_name(tab_setting) %></td>
+				<td><%= display_model_name(tab_setting) %></td>
 				<td class="buttons">
 					<%= delete_link(delete_tab_setting_path(tab_setting), :back_url => request.original_fullpath) %>
 				</td>
 			</tr>
 			<% end %>
-			<% end -%>
 		</tbody>
 	</table>
 </div>
