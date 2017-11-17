@@ -5,3 +5,15 @@
 #admin-menu a.custom-tabs { 
 	background-image: url(../images/tabs.png); 
 }
+
+.one_tab{
+	padding-left:50px !important;
+}
+
+.two_tab{
+	padding-left:100px;
+}
+
+.three_tab{
+	padding-left:150px;
+}
