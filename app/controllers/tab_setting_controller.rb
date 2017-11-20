@@ -10,12 +10,14 @@ class TabSettingController < ApplicationController
         tab_setting = selected_tab_setting
         if tab_setting.nil?
             tab_setting = TabSetting.new
+        else 
+            Redmine::MenuManager.map(:project_menu).delete(tab_setting.tab_name.to_sym)
         end
         unless admin_mode
             tab_setting.project_id = params[:project_id]
         end
         tab_setting.assign_attributes(post_params)
-        tab_setting.save!
+        tab_setting.save!        
         flash[:notice] = l(:notice_successful_update)
         unless admin_mode
             redirect_to  action: :index, project_id: tab_setting.project 
@@ -51,7 +53,7 @@ class TabSettingController < ApplicationController
         @projets = [Project.new(name:"")] + Project.active
         @queries = []
         @tab_setting = TabSetting.new
-        get_modelss
+        get_models
         render :action => 'edit_admin'
     end
 

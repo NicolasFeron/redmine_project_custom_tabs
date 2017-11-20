@@ -24,7 +24,6 @@ module TabSettingHelper
 	end
 
 	def time_entries_by_project(project,begin_date,end_date)
-		puts times_entries(project,begin_date,end_date).sum(:hours)
 		round(times_entries(project,begin_date,end_date).sum(:hours)).to_s
 	end
 

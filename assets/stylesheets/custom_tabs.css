@@ -1,9 +1,9 @@
-#list_tab_settings td {
-	text-align: left;
-}
-
 #admin-menu a.custom-tabs { 
 	background-image: url(../images/tabs.png); 
+}
+
+.left_align{
+	text-align: left !important;	
 }
 
 .one_tab{

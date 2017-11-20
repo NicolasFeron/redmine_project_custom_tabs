@@ -6,6 +6,10 @@ Redmine::Plugin.register :redmine_project_custom_tabs do
 	version '1.0.1'
 	url 'http://kantena.com'
 	author_url 'http://kantena.com'
+	settings  :partial => 'settings/custom_tabs',
+		:default => {
+	      'custom_tabs_server_url' => ''
+    	}
 
 	Redmine::MenuManager.map :admin_menu do |menu|
 		menu.push :custom_tabs, {:controller => 'tab_setting', :action => 'index'}, :caption => "Gestion des onglets"
