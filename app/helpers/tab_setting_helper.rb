@@ -31,6 +31,28 @@ module TabSettingHelper
 		project.time_entries.where(spent_on: begin_date..end_date)
 	end 
 
+	def projects_and_times_entries(project, begin_date, end_date)
+		project_or_children_project(project).each do |p|
+			time_entry = time_entries_by_project(p,begin_date, end_date)
+			if time_entry.to_i > 0
+				yield p, time_entry
+			end
+		end
+	end
+
+	def display_times_entries_group_by_users_group(project,begin_date,end_date)
+		result = ""
+		project_groups(project).collect  do |group| 
+			time_entry = time_entries_by_group(project,group,begin_date, end_date)
+			if time_entry.to_i > 0
+				content_tag :tr do 
+					concat(content_tag :td, group.name, :class=> "one_tab left_align")
+					concat(content_tag :td, time_entry, :class=> "left_align")
+				end
+			end
+		end.join.html_safe
+	end
+
 	def round value, digit=2
 		unless value.nil? && value.blank? 
 			value = value.round(digit)

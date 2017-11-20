@@ -1,5 +1,3 @@
-<%= stylesheet_link_tag 'custom_tabs', :plugin => "redmine_project_custom_tabs" %>
-<%= stylesheet_link_tag 'font-awesome-4.6.3/css/font-awesome.min.css', :plugin => "redmine_project_custom_tabs" %>
 <div class="contextual">
 	<%= link_to l(:label_tab_settings_new), new_admin_tab_setting_path, :class => 'icon icon-add' %>
 </div>
@@ -24,11 +22,11 @@
 		<tbody>
 			<% for tab_setting in @tab_settings -%>
 			<tr>
-				<td><%= link_to(tab_setting.tab_name, edit_admin_tab_setting_path(tab_setting)) %></td>
-				<td><%= tab_setting.project.name %></td>
-				<td><%= tab_setting.tab_url %></td>
-				<td><%= display_query_name(tab_setting) %></td>
-				<td><%= display_model_name(tab_setting) %></td>
+				<td class="left_align"><%= link_to(tab_setting.tab_name, edit_admin_tab_setting_path(tab_setting)) %></td>
+				<td class="left_align"><%= tab_setting.project.name %></td>
+				<td class="left_align"><%= tab_setting.tab_url %></td>
+				<td class="left_align"><%= display_query_name(tab_setting) %></td>
+				<td class="left_align"><%= display_model_name(tab_setting) %></td>
 				<td class="buttons">
 					<%= delete_link(delete_tab_setting_path(tab_setting), :back_url => request.original_fullpath) %>
 				</td>

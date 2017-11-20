@@ -21,5 +21,10 @@ module CustomTabs
       end
       return ""
     end
+
+    def view_layouts_base_html_head(context={})  
+      "\n".html_safe + stylesheet_link_tag('custom_tabs', :plugin => :redmine_project_custom_tabs)  +  "\n".html_safe +
+        stylesheet_link_tag('font-awesome-4.6.3/css/font-awesome.min.css', :plugin => "redmine_project_custom_tabs")
+    end     
   end
 end
