@@ -50,10 +50,15 @@ class TabSettingController < ApplicationController
     end
 
     def new_admin
+        @tab_setting = TabSetting.new
         @projets = [Project.new(name:"")] + Project.active
         @queries = []
         @tab_setting = TabSetting.new
         get_models
+        unless params[:project_id].blank?
+            @tab_setting.project_id = params[:project_id]
+            get_queries(params[:project_id])
+        end
         render :action => 'edit_admin'
     end
 
@@ -69,19 +74,18 @@ class TabSettingController < ApplicationController
 
     def edit_admin
         @projets = Project.active
-        @tab_setting = selected_tab_setting
+        @tab_setting = selected_tab_setting        
+        unless params[:project_id].blank?
+            @tab_setting.project_id = params[:project_id]
+        end
         get_queries(@tab_setting.project_id)
         get_models
-    end
-
-    def custom
-        load_custom_tab_data
     end
 
     def default
         load_custom_tab_data
         if !@tab_setting.tab_setting_model.nil? && !@tab_setting.tab_setting_model.content.nil?            
-             render :action => :custom
+            render :action => :custom, :period => params[:period]
         end
     end
 
@@ -91,9 +95,10 @@ class TabSettingController < ApplicationController
     end
 
     def load_custom_tab_data
+        @period = params[:period]
         @project = Project.find_by_identifier(params[:project_id]) 
         @tab_setting = selected_tab_setting
-        @query = Query.find(@tab_setting.query)
+        @query = Query.find(@tab_setting.query_id)
         @limit = per_page_option        
         sort_init(@query.sort_criteria.empty? ? [['id', 'desc']] : @query.sort_criteria)
         sort_update(@query.sortable_columns)

@@ -41,21 +41,20 @@ module TabSettingHelper
 		tab_setting.query.nil? ? "" : tab_setting.query.name
 	end
 
-	def display_times_entries_group_by_users_group(project,begin_date,end_date)
-		result = ""
-		project_groups(project).collect  do |group| 
-			time_entry = time_entries_by_group(project,group,begin_date, end_date)
-			if time_entry.to_i > 0
-				content_tag :tr do 
-					concat(content_tag(:td, group.name, :class=> "one_tab left_align"))
-					concat(content_tag(:td, time_entry, :class=> "left_align"))
-				end
-			end
-		end.join.html_safe
-	end
-
 	def display_expand_button
 		content_tag(:span,"&nbsp;".html_safe, :class=> "expander", :onclick => "toggleRowGroup(this);")
+	end
+
+	def options_for_period_select(value)
+		options_for_select([[l(:label_this_month), 'current_month'],
+							[l(:label_last_month), 'last_month']],
+							value.blank? ? 'current_month' : value)
+	end
+
+	def display_period_select
+		form_tag("/projects/#{@project.identifier}/issues/default/#{@tab_setting.id}", method: "get") do 
+			select_tag 'period', options_for_period_select(@period), :onchange => 'this.form.submit();' 
+		end 
 	end
 
 	################################

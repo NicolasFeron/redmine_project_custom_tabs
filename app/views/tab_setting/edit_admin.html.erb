@@ -1,14 +1,19 @@
+
+  <p>   
+    <%= form_tag( @tab_setting.id.nil?? new_admin_tab_setting_path : edit_admin_tab_setting_path( @tab_setting.id), method: :get ) do %> 
+      <%= l(:label_project) %>   
+      <%=   select_tag 'project_id', options_from_collection_for_select(@projets, "id", "name", selected: @tab_setting.project_id), :onchange => 'this.form.submit();' %> 
+    <% end  %> 
+  </p>
+
+
 <%= form_for @tab_setting,
   :url => { :controller => 'tab_setting', :action => 'save', :id => @tab_setting },
   :html => {:method => :post} do |f| %>
-
-  <p>
-   	<%= l(:label_project) %>         
-    <%= f.select(:project_id, options_from_collection_for_select(@projets, "id", "name", selected: @tab_setting.project_id) ) %>		
-  </p>
+  <%= f.hidden_field(:project_id) %>
 	<p>
    	<%= l(:label_tab_settings_name) %>         
-	  <%= f.text_field('tab_name') %>		
+	  <%= f.text_field('tab_name', required: "true") %>		
   </p>
   <p>
     <%= l(:label_query) %>       
@@ -22,8 +27,8 @@
    	<%= l(:label_tab_settings_url) %>         		     
 	  <%= f.text_field('tab_url', :title => "http://redmine/projects/projectName/issues?query_id=queryNumber or issues?query_id=queryNumber") %>	
   </p>
-	<p><%= submit_tag l(:button_save) %></p>
+	<p><%= submit_tag l(:button_save), id: "save_button" %></p>
 <% end %>
 
-<%= javascript_include_tag 'edit_admin.js', :plugin => 'redmine_project_custom_tabs' %>
 <%= javascript_include_tag 'edit.js', :plugin => 'redmine_project_custom_tabs' %>
+<%= javascript_include_tag 'bootstrap.min.js', :plugin => 'redmine_project_custom_tabs' %>
