@@ -8,7 +8,6 @@ $( document ).ready(function() {
 	
 	save.prop('disabled', true);
 	project.prop('required', true);
-	model.hide()
 	
 	if(url.val() != ""){
 		model.hide();

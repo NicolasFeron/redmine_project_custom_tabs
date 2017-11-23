@@ -1,51 +1,51 @@
 <%= form_tag({}) do -%>
 <%= hidden_field_tag 'back_url', url_for(params), :id => nil %>
-	<div class="autoscroll">
-		<table class="list @issues">
-		  <thead>
-		    <tr>
-				<%= content_tag('th', 'Type Client')%>
-				<%= content_tag('th', 'Catégories')%>
-				<%= content_tag('th', 'Nombres de demandes')%>
-		    </tr>
-		  </thead>
-		  <tbody>
-			<% 
-				#DATA
-				list = Hash.new
-				@issues.each do |issue|
-					group_name = nil
-					if @query.grouped? 
-						query_group = @query.group_by_column.value(issue)
-						query_group_name = query_group.blank? ? "(#{l(:label_blank_value)})" : column_content(@query.group_by_column, issue) 
-						if list[query_group_name].nil?
-							 list[query_group_name] = Hash.new
-						end
-						if list[query_group_name][issue.category].nil?
-							list[query_group_name][issue.category] = []
-						end
-						list[query_group_name][issue.category] << issue
-					end 
+<div class="autoscroll">
+<table class="list @issues">
+  <thead>
+    <tr>
+		<%= content_tag('th', 'Type Client')%>
+		<%= content_tag('th', 'Catégories')%>
+		<%= content_tag('th', 'Nombres de demandes')%>
+    </tr>
+  </thead>
+  <tbody>
+	<% 
+		#DATA
+		list = Hash.new
+		@issues.each do |issue|
+			group_name = nil
+			if @query.grouped? 
+				query_group = @query.group_by_column.value(issue)
+				query_group_name = query_group.blank? ? "(#{l(:label_blank_value)})" : column_content(@query.group_by_column, issue) 
+				if list[query_group_name].nil?
+					 list[query_group_name] = Hash.new
 				end
-						
-				#DISPLAY
-				list.each do |query_group, category_issues|
-					%>
-					<%= content_tag('tr',
-						content_tag('td', display_expand_button + query_group, :colspan => "3" ),
-						:class => "group open" )
-					%>		
-					<% category_issues.each do |category, issues| %>	
-						<%= content_tag('tr',
-							content_tag('td', '', :class => "left_align" ) +
-							content_tag('td', category, :class => "left_align" )+
-							content_tag('td', issues.count, :class => "left_align" ), 
-							:class => "hascontextmenu #{cycle('odd', 'even')}" )
-						%>	
-					<% end %>
-					
-				<% end %>
-		  </tbody>
-		</table>
-	</div>
+				if list[query_group_name][issue.category].nil?
+					list[query_group_name][issue.category] = []
+				end
+				list[query_group_name][issue.category] << issue
+			end 
+		end
+				
+		#DISPLAY
+		list.each do |query_group, category_issues|
+			%>
+			<%= content_tag('tr',
+				content_tag('td', display_expand_button + query_group, :colspan => "3" ),
+				:class => "group open" )
+			%>		
+			<% category_issues.each do |category, issues| %>	
+				<%= content_tag('tr',
+					content_tag('td', '', :class => "left_align" ) +
+					content_tag('td', category, :class => "left_align" )+
+					content_tag('td', issues.count, :class => "left_align" ), 
+					:class => "hascontextmenu #{cycle('odd', 'even')}" )
+				%>	
+			<% end %>
+			
+		<% end %>
+  </tbody>
+</table>
+</div>
 <% end -%>
