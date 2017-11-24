@@ -6,6 +6,10 @@
 	text-align: left !important;	
 }
 
+.center_align{
+	text-align: center !important;	
+}
+
 .one_tab{
 	padding-left:50px !important;
 }

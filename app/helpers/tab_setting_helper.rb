@@ -57,6 +57,10 @@ module TabSettingHelper
 		end 
 	end
 
+	def display_export_csv_link(form)
+		form.link_to('CSV',:onclick => "exportCSV();return false;")
+	end
+
 	################################
 	###       Calculation        ###
 	################################
@@ -76,5 +80,7 @@ module TabSettingHelper
 		value
 	end
 
-
+	def issues_count_per_month(issues,month)
+		issues.select{|i| i.created_on.month.eql?(month)}.count
+	end
 end	

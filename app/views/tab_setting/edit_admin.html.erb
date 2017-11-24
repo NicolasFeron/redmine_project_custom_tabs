@@ -1,6 +1,7 @@
 
   <p>   
     <%= form_tag( @tab_setting.id.nil?? new_admin_tab_setting_path : edit_admin_tab_setting_path( @tab_setting.id), method: :get ) do %> 
+
       <%= l(:label_project) %>   
       <%=   select_tag 'project_id', options_from_collection_for_select(@projets, "id", "name", selected: @tab_setting.project_id), :onchange => 'this.form.submit();' %> 
     <% end  %> 

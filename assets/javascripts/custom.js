@@ -10,8 +10,7 @@ function toggleRow(el) {
 }
 
 $( document ).ready(function() {
-	$( "#content" ).load( location.href.replace("default","custom_model_html"), function() {
-		
+	$("#content_model").empty()
+	$("#content_model").load( location.href.replace("default","custom_model_html"), function() {
 	});
-
 });	

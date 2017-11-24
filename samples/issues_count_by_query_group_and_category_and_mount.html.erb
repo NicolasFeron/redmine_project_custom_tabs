@@ -1,0 +1,71 @@
+<div class="autoscroll">
+<table class="list @issues">
+  <thead>
+	<%
+		ths = content_tag('th', '')
+		ths.concat(content_tag('th', ''))
+		ths.concat(content_tag('th', 'Nombres de demandes', :colspan => "12", :class => "center_align"))
+		ths.concat(content_tag('th', 'Total'))
+	%>
+	<%= content_tag('tr',ths) %>
+	<% 
+		ths2 = content_tag('th', 'Type Client')
+		ths2.concat(content_tag('th', 'Catégories'))
+		(1..12).each do |month_number|
+			ths2.concat(content_tag('th', I18n.t("date.month_names")[month_number] ))
+		end
+		ths2.concat(content_tag('th', ''))
+	 %>
+	 <%= content_tag('tr',ths2) %>
+  </thead>
+  <tbody>
+	<% 
+		# Construction des données
+		# Regroupement des tâches par groupe (celui de la query) et par catégories
+		list = Hash.new
+		@issues.each do |issue|
+			group_name = nil
+			if @query.grouped? 
+				query_group = @query.group_by_column.value(issue)
+				query_group_name = query_group.blank? ? "(#{l(:label_blank_value)})" : column_content(@query.group_by_column, issue) 
+				if list[query_group_name].nil?
+					 list[query_group_name] = Hash.new
+				end
+				if list[query_group_name][issue.category].nil?
+					list[query_group_name][issue.category] = []
+				end
+				list[query_group_name][issue.category] << issue
+			end 
+		end
+				
+		#DISPLAY
+		list.each do |query_group, category_issues|
+			%>
+			<%= content_tag('tr',
+				content_tag('td', display_expand_button + query_group, :colspan => "15" ),
+				:class => "group open" )
+			%>		
+			<% category_issues.each do |category, issues| %>	
+				<% 
+					total_issues = issues.count
+					tds = content_tag('td', '', :class => "left_align" )
+					tds.concat(content_tag('td', category, :class => "left_align" ))
+				
+				(1..12).each do |month_number|
+					tds.concat(content_tag('td', issues_count_per_month(issues,month_number) , :class => "left_align" ))
+				end 
+				tds.concat(content_tag('td', total_issues, :class => "left_align"))
+				%>
+					
+				<%= content_tag('tr',tds,:class => "hascontextmenu #{cycle('odd', 'even')}" )
+				%>	
+			<% end %>
+			
+		<% end %>
+  </tbody>
+</table>
+</div>
+<% # Affichage des exports -%>
+<% other_formats_links do |f| %>
+  <%= display_export_csv_link(f) %>
+<% end %>

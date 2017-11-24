@@ -133,7 +133,7 @@ class TabSettingController < ApplicationController
     end
 
     def get_queries project_id
-        @queries = [Query.new(name:"")] + IssueQuery.where(project_id: project_id)
+        @queries = [Query.new(name:"")] + IssueQuery.visible.where(project_id: project_id)
     end
 
     def get_models

@@ -1,4 +1,5 @@
-<% 
+<%   
+  # Sélection de la période                  
   date = @period.eql?("last_month") ? Date.today - 1.month : Date.today
   begin_date =  date.beginning_of_month
   end_date   =  date.end_of_month
@@ -14,18 +15,20 @@
     <%= content_tag('th', 'Temps passés')%>
     </thead>
     <tbody>
-      <% projects_and_times_entries(@project,begin_date,end_date) do |project, time_entry | -%>
-          <tr class="group open">
-            <td>
-              <%= display_expand_button %>
-              <%= project.name %>
-            </td>
-            <td>
-               <%= time_entry %>
-            </td>
-          </tr>
-          <%= 
-      project_groups(project).collect  do |group| 
+  
+    <% # Lecture des sous-projets et des cumuls des saisies -%>
+    <% projects_and_times_entries(@project,begin_date,end_date) do |project, time_entry | -%>
+      <tr class="group open">
+        <td>
+          <%= display_expand_button %>
+          <%= project.name %>
+        </td>
+        <td>
+           <%= time_entry %>
+        </td>
+      </tr>     
+      <% # Lecture des groupes utilisateurs et des cumuls des saisies -%>
+      <%= project_groups(project).collect  do |group| 
         time_entry = time_entries_by_group(project,group,begin_date, end_date)
         if time_entry.to_i > 0
           content_tag :tr do 
@@ -38,4 +41,9 @@
       <% end -%>
     </tbody>
   </table>
+<% # Affichage des exports -%>
+<% other_formats_links do |f| %>
+  <%= display_export_csv_link(f) %>
+<% end %>
+  
 </div>
