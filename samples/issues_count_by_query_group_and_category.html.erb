@@ -8,7 +8,7 @@
 		<%= content_tag('th', 'Catégories')%>
 		<%= content_tag('th', 'Nombres de demandes')%>
 		<% (1..12).each do |month_number|%>
-
+			<%= content_tag('th', I18n.t("date.month_names")[month_number]) %>
 		<% end %>
     </tr>
   </thead>

@@ -2,19 +2,18 @@
 <table class="list @issues">
   <thead>
 	<%
-		ths = content_tag('th', '')
-		ths.concat(content_tag('th', ''))
-		ths.concat(content_tag('th', 'Nombres de demandes', :colspan => "12", :class => "center_align"))
-		ths.concat(content_tag('th', 'Total'))
+		ths = content_tag('th', '',:class => "unexportable border_left")
+		ths.concat(content_tag('th', '',:class => "unexportable border_left"))
+		ths.concat(content_tag('th', 'Nombres de demandes', :colspan => "13", :class => "unexportable center_align border_left border_right border_bottom"))
 	%>
 	<%= content_tag('tr',ths) %>
 	<% 
-		ths2 = content_tag('th', 'Type Client')
-		ths2.concat(content_tag('th', 'Catégories'))
+		ths2 = content_tag('th', 'Type Client',:class => "border_left")
+		ths2.concat(content_tag('th', 'Catégories',:class => "border_left"))
 		(1..12).each do |month_number|
-			ths2.concat(content_tag('th', I18n.t("date.month_names")[month_number] ))
+			ths2.concat(content_tag('th', I18n.t("date.month_names")[month_number],:class => "center_align border_left"))
 		end
-		ths2.concat(content_tag('th', ''))
+		ths2.concat(content_tag('th', 'Total',:class => "border_left border_right"))
 	 %>
 	 <%= content_tag('tr',ths2) %>
   </thead>
@@ -43,18 +42,18 @@
 			%>
 			<%= content_tag('tr',
 				content_tag('td', display_expand_button + query_group, :colspan => "15" ),
-				:class => "group open" )
+				:class => "group open border_left" )
 			%>		
 			<% category_issues.each do |category, issues| %>	
 				<% 
 					total_issues = issues.count
-					tds = content_tag('td', '', :class => "left_align" )
-					tds.concat(content_tag('td', category, :class => "left_align" ))
+					tds = content_tag('td', '', :class => "left_align border_left" )
+					tds.concat(content_tag('td', category, :class => "left_align border_left" ))
 				
 				(1..12).each do |month_number|
-					tds.concat(content_tag('td', issues_count_per_month(issues,month_number) , :class => "left_align" ))
+					tds.concat(content_tag('td', issues_count_per_month(issues,month_number) , :class => "center_align border_left" ))
 				end 
-				tds.concat(content_tag('td', total_issues, :class => "left_align"))
+				tds.concat(content_tag('td', total_issues, :class => "left_align border_left border_right"))
 				%>
 					
 				<%= content_tag('tr',tds,:class => "hascontextmenu #{cycle('odd', 'even')}" )
