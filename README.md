@@ -17,6 +17,8 @@ The second allow a manager to edit ll the custom tabs for his project.
 Now, the plugin allow to set a custom model for the custom tabs.
 The model can be create and update by administrator and set to cutom tabs by manager.
 The model is used to totaty customise the rendering on the tab (see the samples models in the sample directory)
+See the [Wiki](https://github.com/NicolasFeron/redmine_project_custom_tabs/wiki) for the avalaibles helpers and css class (
+library being fed).
 
 Installation
 ------------
@@ -40,7 +42,22 @@ Database Migration
 
 the plugin add the followings tables
 * tab_settings
+| Column Name          | Type    |
+| ---------------------|---------|
+| project              | integer |
+| project_id           | integer |
+| tab_name             | string  | 
+| tab_url              | string  | 
+| query_id             | integer |
+| tab_setting_model_id | integer | 
+
 * tab_setting_models
+| Column Name          | Type    |
+| ---------------------|---------|
+| id                   | integer |
+| name                 | string  | 
+| conten               | string  | 
+
 
 ```
 bundle exec rake redmine:plugins:migrate
