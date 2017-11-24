@@ -16,8 +16,8 @@ The second allow a manager to edit ll the custom tabs for his project.
 
 Now, the plugin allow to set a custom model for the custom tabs.
 The model can be create and update by administrator and set to cutom tabs by manager.
-The model is used to totaty customise the rendering on the tab (see the samples models in the sample directory)
-See the [Wiki](https://github.com/NicolasFeron/redmine_project_custom_tabs/wiki) for the avalaibles helpers and css class (
+The model is used to totaty customise the rendering on the tab (see the samples models in the sample directory).
+See the [Wiki](https://github.com/NicolasFeron/redmine_project_custom_tabs/wiki/Models) for the avalaibles helpers and css class (
 library being fed).
 
 Installation
@@ -76,3 +76,7 @@ There are three ways of using this plugin:
 ** on the default view (the same rendering than the query issue view)
 * Set an internal URL like a query URL, an activity URL or a time consommed URL (the same view of the selected page url)
 * Set an external URL like an external wiki, a website or a GitHub URL
+
+
+Difficulties encountered
+------------
