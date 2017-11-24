@@ -41,7 +41,9 @@ Database Migration
 ------------
 
 the plugin add the followings tables :
+
 **tab_settings**
+
 | Column Name          | Type    |
 | ---------------------|---------|
 | project              | integer |
@@ -52,6 +54,7 @@ the plugin add the followings tables :
 | tab_setting_model_id | integer | 
 
 **tab_setting_models**
+
 | Column Name          | Type    |
 | ---------------------|---------|
 | id                   | integer |
