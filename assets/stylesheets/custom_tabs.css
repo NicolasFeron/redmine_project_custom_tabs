@@ -1,6 +1,9 @@
 #admin-menu a.custom-tabs { 
 	background-image: url(../images/tabs.png); 
 }
+#admin-menu a.custom-tab-models { 
+	background-image: url(../images/model.png); 
+}
 
 .border_left{
 	border-left: 1px solid black !important;	
@@ -14,8 +17,16 @@
 	border-bottom: 1px solid black !important;	
 }
 
+.border_top{
+	border-top: 1px solid black !important;	
+}
+
 .left_align{
 	text-align: left !important;	
+}
+
+.right_align{
+	text-align: right !important;	
 }
 
 .center_align{
@@ -25,11 +36,16 @@
 .one_tab{
 	padding-left:50px !important;
 }
-s
+
 .two_tab{
-	padding-left:100px;
+	padding-left:100px !important;
 }
 
 .three_tab{
-	padding-left:150px;
+	padding-left:150px !important;
+}
+
+#piechart {
+	width: 900px; 
+	height: 500px;
 }

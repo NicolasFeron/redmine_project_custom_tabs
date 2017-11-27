@@ -15,13 +15,16 @@ The first allow an administrator to edit all the custom tabs for any project.
 The second allow a manager to edit ll the custom tabs for his project.
 
 Now, the plugin allow to set a custom model for the custom tabs.
+
 The model can be create and update by administrator and set to cutom tabs by manager.
 The model is used to totaty customise the rendering on the tab (see the samples models in the sample directory).
+
 See the [Wiki](https://github.com/NicolasFeron/redmine_project_custom_tabs/wiki/Models) for the avalaibles helpers and css class (
 library being fed).
 
 Installation
 ------------
+
 Unfortunately, there is no hook to manage the addition of modifying the project view.
 It is necessary to add a hook in  *app/views/layouts/base.html.erb*, the line below :
 

@@ -5,6 +5,12 @@ class TabSettingController < ApplicationController
   include SortHelper
   helper :issues
   include IssuesHelper
+  helper :chart
+  include ChartHelper
+  helper :data
+  include DataHelper
+  helper :model
+  include ModelHelper
 
     def save
         tab_setting = selected_tab_setting
